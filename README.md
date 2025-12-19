@@ -79,7 +79,7 @@ npm run dev
 3.  选择您的代码仓库。
 
 ### 第三步: 构建设置 (Build Settings)
-*   **Framework preset (框架预设):** 选择 `Vite`
+*   **Framework preset (框架预设):** 选择 `无`
 *   **Build command (构建命令):** `npm run build`
 *   **Build output directory (输出目录):** `dist`
 
