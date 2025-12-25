@@ -23,6 +23,5 @@
     "typescript": "^5.2.2",
     "vite": "^5.1.6",
     "vite-plugin-pwa": "^0.16.4",
-    "wrangler": "^4.56.0"
   }
 }
