@@ -1,5 +1,5 @@
 interface Env {
-  DB: D1Database;
+  DB?: D1Database;
 }
 
 // 简单内存缓存，减少数据库查询
@@ -23,9 +23,9 @@ export const onRequestGet = async ({ env }: { env: Env }) => {
     }
 
     // 从数据库获取数据
-    const { results } = await env.DB.prepare(
+    const { results } = env.DB ? await env.DB.prepare(
       "SELECT key, value FROM config"
-    ).all<{ key: string; value: string }>();
+    ).all<{ key: string; value: string }>() : { results: [] };
 
     const configMap = new Map();
     results?.forEach((row) => configMap.set(row.key, row.value));

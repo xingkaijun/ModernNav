@@ -1,5 +1,5 @@
 interface Env {
-  DB: D1Database;
+  DB?: D1Database;
 }
 
 // 导入共享工具
@@ -46,6 +46,16 @@ export const onRequestPost = async ({
         JSON.stringify({ error: ERROR_MESSAGES.UNAUTHORIZED }),
         {
           status: 401,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+    }
+
+    if (!env.DB) {
+      return new Response(
+        JSON.stringify({ error: "Database not available" }),
+        {
+          status: 503,
           headers: { "Content-Type": "application/json" },
         }
       );
@@ -127,6 +137,16 @@ export const onRequestPost = async ({
         }),
         {
           status: 400,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+    }
+
+    if (!env.DB) {
+      return new Response(
+        JSON.stringify({ error: "Database not available" }),
+        {
+          status: 503,
           headers: { "Content-Type": "application/json" },
         }
       );
