@@ -31,4 +31,3 @@ metadata.json
 scripts/*
 functions/_worker.ts
 .wrangler/*
-wrangler.toml
