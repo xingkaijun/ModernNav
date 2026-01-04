@@ -58,7 +58,7 @@ export const GeneralTab: React.FC<GeneralTabProps> = ({ prefs, onUpdate }) => {
               type="text"
               value={formData.siteTitle}
               onChange={(e) => setFormData({ ...formData, siteTitle: e.target.value })}
-              className="w-full bg-slate-950/50 border border-white/[0.05] rounded-xl px-4 py-2.5 text-white placeholder-slate-700 focus:outline-none focus:border-[var(--theme-primary)]/50 transition-all text-sm"
+              className="input-primary"
             />
           </div>
 
@@ -72,7 +72,7 @@ export const GeneralTab: React.FC<GeneralTabProps> = ({ prefs, onUpdate }) => {
               type="text"
               value={formData.footerGithub}
               onChange={(e) => setFormData({ ...formData, footerGithub: e.target.value })}
-              className="w-full bg-slate-950/50 border border-white/[0.05] rounded-xl px-4 py-2.5 text-white placeholder-slate-700 focus:outline-none focus:border-[var(--theme-primary)]/50 transition-all text-sm font-mono"
+              className="input-primary font-mono"
             />
           </div>
         </div>
@@ -88,7 +88,7 @@ export const GeneralTab: React.FC<GeneralTabProps> = ({ prefs, onUpdate }) => {
               type="text"
               value={formData.faviconApi}
               onChange={(e) => setFormData({ ...formData, faviconApi: e.target.value })}
-              className="w-full bg-slate-950/50 border border-white/[0.05] rounded-xl px-4 py-2.5 text-white placeholder-slate-700 focus:outline-none focus:border-[var(--theme-primary)]/50 transition-all text-xs font-mono"
+              className="input-primary text-xs font-mono"
               placeholder="https://favicon.im/{domain}"
             />
             <div className="flex gap-1.5 items-start px-1">
@@ -123,14 +123,14 @@ export const GeneralTab: React.FC<GeneralTabProps> = ({ prefs, onUpdate }) => {
                   value={link.title}
                   onChange={(e) => updateFooterLink(index, "title", e.target.value)}
                   placeholder="Title"
-                  className="w-32 bg-slate-950/50 border border-white/[0.05] rounded-xl px-3 py-2 text-white placeholder-slate-800 focus:outline-none focus:border-[var(--theme-primary)]/50 transition-all text-xs"
+                  className="input-primary w-32 text-xs"
                 />
                 <input
                   type="text"
                   value={link.url}
                   onChange={(e) => updateFooterLink(index, "url", e.target.value)}
                   placeholder="https://..."
-                  className="flex-1 bg-slate-950/50 border border-white/[0.05] rounded-xl px-3 py-2 text-white placeholder-slate-800 focus:outline-none focus:border-[var(--theme-primary)]/50 transition-all text-xs font-mono"
+                  className="input-primary flex-1 text-xs font-mono"
                 />
                 <button
                   onClick={() => removeFooterLink(index)}

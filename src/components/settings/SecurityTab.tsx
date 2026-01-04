@@ -70,7 +70,7 @@ export const SecurityTab: React.FC = () => {
               onChange={(e) =>
                 setPasswordForm({ ...passwordForm, current: e.target.value })
               }
-              className="w-full bg-slate-950/50 border border-white/[0.1] rounded-xl px-4 py-3 text-white placeholder-slate-700 focus:outline-none focus:border-red-500 transition-all text-sm"
+              className="input-primary py-3 px-4 focus:border-red-500"
             />
           </div>
           <div>
@@ -83,7 +83,7 @@ export const SecurityTab: React.FC = () => {
               onChange={(e) =>
                 setPasswordForm({ ...passwordForm, new: e.target.value })
               }
-              className="w-full bg-slate-950/50 border border-white/[0.1] rounded-xl px-4 py-3 text-white placeholder-slate-700 focus:outline-none focus:border-red-500 transition-all text-sm"
+              className="input-primary py-3 px-4 focus:border-red-500"
             />
           </div>
           <div>
@@ -96,7 +96,7 @@ export const SecurityTab: React.FC = () => {
               onChange={(e) =>
                 setPasswordForm({ ...passwordForm, confirm: e.target.value })
               }
-              className="w-full bg-slate-950/50 border border-white/[0.1] rounded-xl px-4 py-3 text-white placeholder-slate-700 focus:outline-none focus:border-red-500 transition-all text-sm"
+              className="input-primary py-3 px-4 focus:border-red-500"
             />
           </div>
           <div className="flex items-center justify-between pt-2">

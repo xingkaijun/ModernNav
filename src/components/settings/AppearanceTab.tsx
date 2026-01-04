@@ -160,7 +160,7 @@ export const AppearanceTab: React.FC<AppearanceTabProps> = ({
                     value={bgInput}
                     onChange={(e) => setBgInput(e.target.value)}
                     placeholder={t("bg_url_placeholder")}
-                    className="w-full bg-slate-950/40 border border-white/[0.05] rounded-xl pl-10 pr-4 py-2 text-white focus:outline-none focus:border-[var(--theme-primary)]/50 transition-all font-mono text-[11px]"
+                    className="input-primary pl-10 pr-4 font-mono text-[11px]"
                   />
                 </div>
               </div>

@@ -59,7 +59,7 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({
           type="password"
           value={authInput}
           onChange={(e) => setAuthInput(e.target.value)}
-          className="w-full bg-slate-950/50 border border-white/[0.1] rounded-xl px-4 py-3 text-center text-white placeholder-slate-600 focus:outline-none focus:border-[var(--theme-primary)] focus:ring-1 focus:ring-[var(--theme-primary)]/50 transition-all tracking-widest text-lg"
+          className="input-primary py-3 px-4 text-center tracking-widest text-lg"
           placeholder="••••"
           autoFocus
         />

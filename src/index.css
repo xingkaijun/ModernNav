@@ -126,3 +126,13 @@ body {
   transform: translateZ(0);
   isolation: isolate;
 }
+
+@layer components {
+  .input-primary {
+    @apply w-full bg-slate-900/50 border border-white/[0.1] rounded-lg px-3 py-2 text-white placeholder-slate-600 outline-none transition-colors duration-200 text-sm;
+  }
+  .input-primary:focus {
+    border-color: var(--theme-primary);
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--theme-primary), transparent 50%);
+  }
+}
