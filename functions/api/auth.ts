@@ -13,27 +13,15 @@ import {
   ERROR_MESSAGES,
 } from "./utils/authHelpers";
 
-// 创建速率限制器实例
-const authRateLimiter = new RateLimiter(15, 15 * 60 * 1000); // 15分钟内最多15次登录尝试
+// 创建速率限制器实例 - 为不同操作设置独立的限制
+const loginRateLimiter = new RateLimiter(10, 15 * 60 * 1000); // 登录：15分钟内最多10次
+const refreshRateLimiter = new RateLimiter(100, 15 * 60 * 1000); // 刷新token：15分钟内最多100次
+const updateRateLimiter = new RateLimiter(10, 15 * 60 * 1000); // 修改密码：15分钟内最多10次
 
 export const onRequestPost = async ({ request, env }: { request: Request; env: Env }) => {
   try {
     const clientIP = getClientIP(request);
 
-    // 检查速率限制
-    if (!authRateLimiter.isAllowed(clientIP)) {
-      const resetTime = authRateLimiter.getResetTime(clientIP);
-      return new Response(
-        JSON.stringify({
-          error: ERROR_MESSAGES.RATE_LIMITED,
-          resetTime,
-        }),
-        {
-          status: 429,
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-    }
 
     const body = (await request.json()) as any;
     const { action, code, currentCode, newCode } = body;
@@ -53,6 +41,21 @@ export const onRequestPost = async ({ request, env }: { request: Request; env: E
 
       // 登录
       if (action === "login") {
+        // 检查登录速率限制
+        if (!loginRateLimiter.isAllowed(clientIP)) {
+          const resetTime = loginRateLimiter.getResetTime(clientIP);
+          return new Response(
+            JSON.stringify({
+              error: ERROR_MESSAGES.RATE_LIMITED,
+              resetTime,
+            }),
+            {
+              status: 429,
+              headers: { "Content-Type": "application/json" },
+            }
+          );
+        }
+
         if (!code || typeof code !== "string") {
           return new Response(JSON.stringify({ error: ERROR_MESSAGES.INVALID_CREDENTIALS }), {
             status: 400,
@@ -92,6 +95,21 @@ export const onRequestPost = async ({ request, env }: { request: Request; env: E
 
     // 1. 登录
     if (action === "login") {
+      // 检查登录速率限制
+      if (!loginRateLimiter.isAllowed(clientIP)) {
+        const resetTime = loginRateLimiter.getResetTime(clientIP);
+        return new Response(
+          JSON.stringify({
+            error: ERROR_MESSAGES.RATE_LIMITED,
+            resetTime,
+          }),
+          {
+            status: 429,
+            headers: { "Content-Type": "application/json" },
+          }
+        );
+      }
+
       if (!code || typeof code !== "string") {
         return new Response(JSON.stringify({ error: ERROR_MESSAGES.INVALID_CREDENTIALS }), {
           status: 400,
@@ -118,6 +136,21 @@ export const onRequestPost = async ({ request, env }: { request: Request; env: E
 
     // 2. 刷新 Token
     if (action === "refresh") {
+      // 检查刷新速率限制
+      if (!refreshRateLimiter.isAllowed(clientIP)) {
+        const resetTime = refreshRateLimiter.getResetTime(clientIP);
+        return new Response(
+          JSON.stringify({
+            error: ERROR_MESSAGES.RATE_LIMITED,
+            resetTime,
+          }),
+          {
+            status: 429,
+            headers: { "Content-Type": "application/json" },
+          }
+        );
+      }
+
       const rfToken = request.headers.get("Cookie")?.match(/refresh_token=([^;]+)/)?.[1];
 
       if (!rfToken) {
@@ -147,6 +180,21 @@ export const onRequestPost = async ({ request, env }: { request: Request; env: E
 
     // 3. 修改密码
     if (action === "update") {
+      // 检查修改密码速率限制
+      if (!updateRateLimiter.isAllowed(clientIP)) {
+        const resetTime = updateRateLimiter.getResetTime(clientIP);
+        return new Response(
+          JSON.stringify({
+            error: ERROR_MESSAGES.RATE_LIMITED,
+            resetTime,
+          }),
+          {
+            status: 429,
+            headers: { "Content-Type": "application/json" },
+          }
+        );
+      }
+
       const token = request.headers.get("Authorization")?.split(" ")[1];
 
       if (!token) {
