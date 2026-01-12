@@ -27,6 +27,7 @@ const translations = {
     unlock_btn: "Unlock Dashboard",
     cancel: "Cancel",
     incorrect_code: "Incorrect Access Code",
+    login_rate_limited: "Too many login attempts, please try again later",
     logout: "Logout",
     session_expired: "Session expired due to inactivity. Please login again.",
 
@@ -162,6 +163,7 @@ const translations = {
     unlock_btn: "解锁仪表盘",
     cancel: "取消",
     incorrect_code: "访问代码错误",
+    login_rate_limited: "登录尝试过于频繁，请稍后再试",
     logout: "退出登录",
     session_expired: "会话已超时，请重新登录。",
 

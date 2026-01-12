@@ -32,7 +32,11 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({
         setAuthError(t("incorrect_code"));
       }
     } catch (error) {
-      setAuthError(t("incorrect_code"));
+      if (error instanceof Error && error.message === "RATE_LIMITED") {
+        setAuthError(t("login_rate_limited"));
+      } else {
+        setAuthError(t("incorrect_code"));
+      }
     } finally {
       setIsVerifying(false);
     }

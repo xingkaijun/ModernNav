@@ -179,10 +179,19 @@ class ApiClient {
         this._saveTokenToStorage(data.accessToken);
         return true;
       }
+
+      // 处理 429 错误
+      if (response.status === 429) {
+        const error = new Error("RATE_LIMITED");
+        (error as any).status = 429;
+        throw error;
+      }
+
       return false;
     } catch (error) {
       console.error("Login failed:", error);
-      return false;
+      // 重新抛出错误以便上层处理
+      throw error;
     }
   }
 
