@@ -1,10 +1,10 @@
+import { ApiResponse } from "../types";
+
 const AUTH_KEYS = {
   ACCESS_TOKEN: "modernNav_token",
   TOKEN_EXPIRY: "modernNav_tokenExpiry",
   USER_LOGGED_OUT: "modernNav_userLoggedOut",
 };
-
-import { ApiResponse } from "../types";
 
 /**
  * 统一 API 客户端

@@ -11,7 +11,7 @@ import { CategoryNav } from "./components/CategoryNav";
 import { Footer } from "./components/Footer";
 import { SkeletonLoader } from "./components/SkeletonLoader";
 import { useDashboardLogic } from "./hooks/useDashboardLogic";
-import { useResponsiveColumns } from "./hooks/useResponsiveColumns"; // Import the hook
+import { useResponsiveColumns } from "./hooks/useResponsiveColumns";
 import { useLanguage } from "./contexts/LanguageContext";
 import { ThemeMode } from "./types";
 import { getFaviconUrl } from "./utils/favicon";
@@ -115,7 +115,7 @@ const App: React.FC = () => {
       />
 
       <div
-        className="container mx-auto px-4 flex-1 flex flex-col items-center pt-8 md:pt-12 relative z-[10]"
+        className="container mx-auto px-4 flex-1 flex flex-col items-center pt-20 md:pt-12 relative z-[10]"
         style={{ maxWidth: `${maxContainerWidth}px` }}
       >
         <section className="w-full mb-14 animate-fade-in-down relative z-[70] isolation-isolate">
